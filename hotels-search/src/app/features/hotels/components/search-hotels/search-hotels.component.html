@@ -1,6 +1,7 @@
 <div class="row">
     <h2 class="page-header">{{ title }}</h2>
 </div>
+<app-alert *ngIf="messages.length > 0" [messages]="messages" [alertType]="alertType"></app-alert>
 <div class="row">
     <div class="col-md-3 col-sm-12 mt-3" *ngFor="let hotelData of hotelsList">
         <app-hotel-item [hotelData] = "hotelData"></app-hotel-item>

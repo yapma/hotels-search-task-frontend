@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetHotelsResponseDto } from '../../models/hotels-dtos/GetHotelsResponseDto';
 import { HotelsService } from '../../services/hotels.service';
 import { BaseHotelsComponents } from '../BaseHotelsComponents';
+import { AlertType } from 'src/app/shared/enums/alert-type';
 
 @Component({
   selector: 'app-search-hotels',
@@ -10,7 +11,8 @@ import { BaseHotelsComponents } from '../BaseHotelsComponents';
 })
 export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
   title: string = 'Show and Search'
-  errors: string[] = []
+  messages: string[] = []
+  alertType: AlertType = AlertType.Warning
 
   hotelsList: GetHotelsResponseDto[] = []
 
@@ -25,10 +27,11 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
       .subscribe(
         {
           next: (value: GetHotelsResponseDto[]) => {
+            this.messages = []
             this.hotelsList = value
           },
           error: (error: any) => {
-            this.errors = error.error.errors.Messages
+            this.messages = error.error.errors.Messages
           },
           complete: () => { }
         }

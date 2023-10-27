@@ -1,5 +1,5 @@
 export interface BaseResponseDto {
   "errors": {
-    "Messages": []
+    Messages: string[]
   }
 }
