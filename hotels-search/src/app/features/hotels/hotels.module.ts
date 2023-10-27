@@ -5,6 +5,7 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import { SearchHotelsComponent } from './components/search-hotels/search-hotels.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HotelsRoutingModule } from './hotels-routing.module';
+import { HotelItemComponent } from './components/hotel-item/hotel-item.component';
 
 
 
@@ -12,7 +13,8 @@ import { HotelsRoutingModule } from './hotels-routing.module';
   declarations: [
     RegisterNewHotelComponent,
     UpdateHotelComponent,
-    SearchHotelsComponent
+    SearchHotelsComponent,
+    HotelItemComponent
   ],
   imports: [
     CommonModule,
