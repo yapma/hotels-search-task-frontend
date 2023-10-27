@@ -4,6 +4,7 @@ import { GetHotelsResponseDto } from '../models/hotels-dtos/GetHotelsResponseDto
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterHotelRequestDto } from '../models/hotels-dtos/RegisterHotelRequestDto';
+import { UpdateHotelRequestDto } from '../models/hotels-dtos/UpdateHotelRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,11 @@ export class HotelsService {
 
   registerHotel(model: RegisterHotelRequestDto): Observable<void> {
     const url = `${this.url}/RegisterHotel`;
+    return this.http.post<void>(url, model);
+  }
+
+  updateHotel(model: UpdateHotelRequestDto): Observable<void> {
+    const url = `${this.url}/UpdateHotel`;
     return this.http.post<void>(url, model);
   }
 }

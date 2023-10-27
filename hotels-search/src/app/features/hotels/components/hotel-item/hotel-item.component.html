@@ -9,7 +9,8 @@
           {{hotelData.country}}, {{hotelData.state}}, {{hotelData.city}}
         </span>
         <hr>
-        <a href="#" class="btn btn-danger" data-bs-toggle="modal" 
+        <a href="#" class="btn btn-primary" [routerLink]="['/update', hotelData.id]">Update</a>
+        <a href="#" id="btnDelete" class="btn btn-danger" data-bs-toggle="modal" 
         data-bs-target="#deleteModal">Delete</a>
     </div>
 </div>

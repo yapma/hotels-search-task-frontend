@@ -7,7 +7,7 @@ import { SearchHotelsComponent } from './components/search-hotels/search-hotels.
 const routes: Routes = [
     { path: 'search',  component: SearchHotelsComponent },
     { path: 'register',  component: RegisterNewHotelComponent },
-    { path: 'update', component: UpdateHotelComponent }
+    { path: 'update/:id', component: UpdateHotelComponent }
 ];
 
 @NgModule({

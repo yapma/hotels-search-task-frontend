@@ -48,7 +48,7 @@ export class RegisterNewHotelComponent implements OnInit, BaseHotelsComponents {
           next: (value: void) => {
             this.alertData = {
               alertType: AlertType.Success,
-              messages: ["Hotel register successfully."]
+              messages: ["The hotel information has been successfully registered."]
             }
           },
           error: (error: any) => {
