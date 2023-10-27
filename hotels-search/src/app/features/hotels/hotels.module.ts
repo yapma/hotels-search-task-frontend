@@ -8,6 +8,7 @@ import { HotelsRoutingModule } from './hotels-routing.module';
 import { HotelItemComponent } from './components/hotel-item/hotel-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StarRateComponent } from './components/star-rate/star-rate.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     RegisterNewHotelComponent,
     UpdateHotelComponent,
     SearchHotelsComponent,
-    HotelItemComponent
+    HotelItemComponent,
+    StarRateComponent
   ],
   imports: [
     CommonModule,
