@@ -1,1 +1,67 @@
-<p>register-new-hotel works!</p>
+<div class="row">
+    <h2 class="page-header">{{ title }}</h2>
+</div>
+<app-alert *ngIf="alertData.messages.length > 0" [alertData]="alertData"></app-alert>
+
+<form [formGroup]="registerHotelForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="txtName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="txtName" formControlName="name">
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.name.touched || submitted) && this.registerHotelForm.controls.name.errors">
+                Name is required.
+            </span>
+        </div>
+
+        <div class="col-4 mb-3">
+            <label for="txtCountry" class="form-label">Country</label>
+            <input type="text" class="form-control" id="txtCountry" formControlName="country">
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.country.touched || submitted) && this.registerHotelForm.controls.country.errors">
+                Country is required.
+            </span>
+        </div>
+
+        <div class="col-4 mb-3">
+            <label for="txtState" class="form-label">State</label>
+            <input type="text" class="form-control" id="txtState" formControlName="state">
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.state.touched || submitted) && this.registerHotelForm.controls.state.errors">
+                State is required.
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="txtCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="txtCity" formControlName="city">
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.city.touched || submitted) && this.registerHotelForm.controls.city.errors">
+                City is required.
+            </span>
+        </div>
+
+        <div class="col-4 mb-3">
+            <label for="txtRate" class="form-label">Rate</label>
+            <input type="number" class="form-control" id="txtRate" formControlName="rate">
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.rate.touched || submitted) && this.registerHotelForm.controls.rate.errors">
+                Rate is required and must between 1 and 5.
+            </span>
+        </div>
+
+        <div class="col-4 mb-3">
+            <label for="txtDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="txtDescription" formControlName="description"></textarea>
+            <span class="text-danger"
+                *ngIf="(registerHotelForm.controls.description.touched || submitted) && this.registerHotelForm.controls.description.errors">
+                Description is required.
+            </span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

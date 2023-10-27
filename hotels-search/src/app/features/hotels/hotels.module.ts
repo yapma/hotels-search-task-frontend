@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HotelsRoutingModule } from './hotels-routing.module';
 import { HotelItemComponent } from './components/hotel-item/hotel-item.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRateComponent } from './components/star-rate/star-rate.component';
 
 
@@ -24,7 +24,8 @@ import { StarRateComponent } from './components/star-rate/star-rate.component';
     SharedModule,
     HotelsRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SearchHotelsComponent
