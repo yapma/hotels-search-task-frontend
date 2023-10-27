@@ -9,7 +9,7 @@ import { AlertType } from '../../enums/alert-type';
 export class AlertComponent implements OnInit {
 
   @Input() messages: string[] = [];
-  @Input() alertType: string = AlertType.Success;
+  @Input() alertType: AlertType = AlertType.Success;
 
   constructor() { }
 

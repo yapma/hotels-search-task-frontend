@@ -15,6 +15,7 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
   alertType: AlertType = AlertType.Warning
 
   hotelsList: GetHotelsResponseDto[] = []
+  searchedName = "";
 
   constructor(private hotelsService: HotelsService) { }
 
@@ -22,8 +23,8 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
     this.getHotels();
   }
 
-  getHotels(): void {
-    this.hotelsService.getHotels()
+  getHotels(hotelName: string = ''): void {
+    this.hotelsService.getHotels(0, hotelName)
       .subscribe(
         {
           next: (value: GetHotelsResponseDto[]) => {
@@ -31,11 +32,17 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
             this.hotelsList = value
           },
           error: (error: any) => {
+            this.hotelsList = []
             this.messages = error.error.errors.Messages
           },
           complete: () => { }
         }
       );
+  }
+
+  onSearch(): void {
+    if (this.searchedName.length == 0 || this.searchedName.length > 2)
+      this.getHotels(this.searchedName)
   }
 
 }
