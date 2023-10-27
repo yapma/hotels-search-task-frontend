@@ -1,4 +1,5 @@
+import { AlertData } from "src/app/shared/models/AlertData";
+
 export interface BaseHotelsComponents {
-    title: string,
-    messages: string[]
+    alertData: AlertData,
 }

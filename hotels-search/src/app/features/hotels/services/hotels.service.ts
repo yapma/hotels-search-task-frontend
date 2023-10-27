@@ -22,4 +22,9 @@ export class HotelsService {
     const url = `${this.url}/GetHotels?id=${id}&title=${title}`;
     return this.http.get<GetHotelsResponseDto[]>(url);
   }
+
+  deleteHotel(id: number = 0): Observable<void> {
+    const url = `${this.url}/DeleteHotel?id=${id}`;
+    return this.http.delete<void>(url);
+  }
 }

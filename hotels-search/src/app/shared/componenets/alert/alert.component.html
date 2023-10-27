@@ -1,6 +1,6 @@
 <div>
-    <div class="alert alert-{{alertType}}" role="alert">
-        <ul *ngFor="let message of messages">
+    <div class="alert alert-{{alertData.alertType}}" role="alert">
+        <ul *ngFor="let message of alertData.messages">
             <li>{{message}}</li>
         </ul>
     </div>

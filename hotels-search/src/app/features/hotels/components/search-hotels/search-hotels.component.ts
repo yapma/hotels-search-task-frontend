@@ -3,6 +3,7 @@ import { GetHotelsResponseDto } from '../../models/hotels-dtos/GetHotelsResponse
 import { HotelsService } from '../../services/hotels.service';
 import { BaseHotelsComponents } from '../BaseHotelsComponents';
 import { AlertType } from 'src/app/shared/enums/alert-type';
+import { AlertData } from 'src/app/shared/models/AlertData';
 
 @Component({
   selector: 'app-search-hotels',
@@ -11,8 +12,10 @@ import { AlertType } from 'src/app/shared/enums/alert-type';
 })
 export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
   title: string = 'Show and Search'
-  messages: string[] = []
-  alertType: AlertType = AlertType.Warning
+  alertData: AlertData = {
+    alertType: AlertType.Warning,
+    messages: []
+  };
 
   hotelsList: GetHotelsResponseDto[] = []
   searchedName = "";
@@ -23,19 +26,23 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
     this.getHotels();
   }
 
-  getHotels(hotelName: string = ''): void {
+  getHotels(hotelName: string = '', alertData: AlertData | undefined = undefined): void {
     this.hotelsService.getHotels(0, hotelName)
       .subscribe(
         {
           next: (value: GetHotelsResponseDto[]) => {
-            this.messages = []
+            this.alertData.messages = []
             this.hotelsList = value
           },
           error: (error: any) => {
             this.hotelsList = []
-            this.messages = error.error.errors.Messages
+            this.alertData.messages = error.error.errors.Messages
+            this.alertData.alertType = AlertType.Warning
           },
-          complete: () => { }
+          complete: () => {
+            if (alertData)
+              this.alertData = alertData
+          }
         }
       );
   }
@@ -43,6 +50,10 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
   onSearch(): void {
     if (this.searchedName.length == 0 || this.searchedName.length > 2)
       this.getHotels(this.searchedName)
+  }
+
+  onDelete(alertData: AlertData) {
+    this.getHotels('', alertData)
   }
 
 }

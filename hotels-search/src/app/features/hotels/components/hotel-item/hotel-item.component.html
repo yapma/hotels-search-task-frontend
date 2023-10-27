@@ -4,6 +4,30 @@
         <h5 class="card-title">{{hotelData.name}}</h5>
         <p class="card-text">{{hotelData.description| slice:0:60}} ...</p>
         <a href="#" class="btn btn-primary">Detail</a>
-        <a href="#" id="btn-delete" class="btn btn-danger">Delete</a>
+        <a href="#" id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" 
+        data-bs-target="#deleteModal">Delete</a>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria- 
+  labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="deleteModalLabel">Delete Hotel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+       aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Are you sure to delete of {{hotelData.name}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" 
+        aria-label="Close">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" 
+        aria-label="Close" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertType } from '../../enums/alert-type';
+import { AlertData } from '../../models/AlertData';
 
 @Component({
   selector: 'app-alert',
@@ -8,12 +9,13 @@ import { AlertType } from '../../enums/alert-type';
 })
 export class AlertComponent implements OnInit {
 
-  @Input() messages: string[] = [];
-  @Input() alertType: AlertType = AlertType.Success;
+  @Input() alertData: AlertData = {
+    alertType : AlertType.Success,
+    messages : []
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
