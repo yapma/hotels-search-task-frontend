@@ -1,8 +1,10 @@
-nav:
 <app-nav-bar></app-nav-bar>
-
-header:
-<h1>App</h1>
-
-body:
-<router-outlet></router-outlet>
+<main class="flex-shrink-0">
+    <div class="main-container">
+        <div class="container">
+            <h1 class="page-header">Title</h1>
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</main>
