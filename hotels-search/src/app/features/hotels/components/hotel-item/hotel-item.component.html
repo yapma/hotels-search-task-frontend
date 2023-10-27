@@ -4,8 +4,12 @@
         <h5 class="card-title">{{hotelData.name}}</h5>
         <app-star-rate [rate]="hotelData.starsCount"></app-star-rate>
         <p class="card-text">{{hotelData.description| slice:0:60}} ...</p>
-        <a href="#" class="btn btn-primary">Detail</a>
-        <a href="#" id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" 
+        <span>
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          {{hotelData.country}}, {{hotelData.state}}, {{hotelData.city}}
+        </span>
+        <hr>
+        <a href="#" class="btn btn-danger" data-bs-toggle="modal" 
         data-bs-target="#deleteModal">Delete</a>
     </div>
 </div>
