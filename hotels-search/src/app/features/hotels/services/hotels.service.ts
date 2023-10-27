@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GetHotelsResponseDto } from '../models/hotels-dtos/GetHotelsResponseDto';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterHotelRequestDto } from '../models/hotels-dtos/RegisterHotelRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,10 @@ export class HotelsService {
   deleteHotel(id: number = 0): Observable<void> {
     const url = `${this.url}/DeleteHotel?id=${id}`;
     return this.http.delete<void>(url);
+  }
+
+  registerHotel(model: RegisterHotelRequestDto): Observable<void> {
+    const url = `${this.url}/RegisterHotel`;
+    return this.http.post<void>(url, model);
   }
 }

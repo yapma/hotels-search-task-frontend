@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseHotelsComponents } from '../BaseHotelsComponents';
 import { AlertData } from 'src/app/shared/models/AlertData';
 import { AlertType } from 'src/app/shared/enums/alert-type';
+import { HotelsService } from '../../services/hotels.service';
+import { RegisterHotelRequestDto } from '../../models/hotels-dtos/RegisterHotelRequestDto';
 
 @Component({
   selector: 'app-register-new-hotel',
@@ -26,15 +28,49 @@ export class RegisterNewHotelComponent implements OnInit, BaseHotelsComponents {
   });
   submitted = false;
 
-  constructor() { }
+  constructor(private hotelsService: HotelsService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.registerHotelForm);
-    
+    if (this.registerHotelForm.valid) {
+      this.registerHotel()
+    }
+  }
+
+  registerHotel() {
+    var dto = this.convertFormToDto(this.registerHotelForm)
+    this.hotelsService.registerHotel(dto)
+      .subscribe(
+        {
+          next: (value: void) => {
+            this.alertData = {
+              alertType: AlertType.Success,
+              messages: ["Hotel register successfully."]
+            }
+          },
+          error: (error: any) => {
+            this.alertData = {
+              alertType: AlertType.Error,
+              messages: error.error.errors.Messages
+            }
+          },
+        }
+      );
+  }
+
+  convertFormToDto(form: FormGroup): RegisterHotelRequestDto {
+    var dto: RegisterHotelRequestDto = {
+      city: form.controls.city.value,
+      country: form.controls.country.value,
+      state: form.controls.state.value,
+      description: form.controls.description.value,
+      name: form.controls.name.value,
+      starsCount: form.controls.rate.value,
+    }
+    return dto;
   }
 
 }
