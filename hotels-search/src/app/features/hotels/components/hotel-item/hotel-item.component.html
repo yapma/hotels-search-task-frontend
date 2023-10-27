@@ -2,7 +2,7 @@
     <img src="../../../../../assets/hotel-image.webp" class="card-img-top">
     <div class="card-body">
         <h5 class="card-title">{{hotelData.name}}</h5>
-        <p class="card-text">{{hotelData.description}}</p>
+        <p class="card-text">{{hotelData.description| slice:0:60}} ...</p>
         <a href="#" class="btn btn-primary">Detail</a>
         <a href="#" id="btn-delete" class="btn btn-danger">Delete</a>
     </div>

@@ -6,7 +6,7 @@ import { SearchHotelsComponent } from './components/search-hotels/search-hotels.
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HotelsRoutingModule } from './hotels-routing.module';
 import { HotelItemComponent } from './components/hotel-item/hotel-item.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { HotelItemComponent } from './components/hotel-item/hotel-item.component
   imports: [
     CommonModule,
     SharedModule,
-    HotelsRoutingModule
+    HotelsRoutingModule,
+    HttpClientModule
   ],
   exports: [
     SearchHotelsComponent
