@@ -10,6 +10,24 @@
         </span>
         <hr>
         <a href="#" class="btn btn-primary" [routerLink]="['/update', hotelData.id]">Update</a>
-        <a id="btnDelete" class="btn btn-danger" (click)="delete()">Delete</a>
+        <a id="btnDelete" class="btn btn-danger" (click)="open(deleteModal)">Delete</a>
     </div>
 </div>
+
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-danger" id="deleteModalLabel">Delete Hotel</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure to delete of {{hotelData.name}}?
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+     aria-label="Close">Close</button>
+     <button type="button" class="btn btn-danger" data-bs-dismiss="modal" 
+     aria-label="Close" (click)="delete()">Delete</button>
+   </div>
+</ng-template>
