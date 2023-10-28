@@ -66,7 +66,7 @@ export class UpdateHotelComponent implements OnInit, BaseHotelsComponents {
 
   updateHotel() {
     var dto = this.convertFormToDto(this.updateHotelForm)
-    this.hotelsService.updateHotel(dto)
+    this.hotelsService.updateHotel(this.updateHotelForm.controls.id.value ?? 0, dto)
       .subscribe(
         {
           next: (value: void) => {

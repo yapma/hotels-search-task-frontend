@@ -21,22 +21,22 @@ export class HotelsService {
   ) { }
 
   getHotels(id: number = 0, title: string = ""): Observable<GetHotelsResponseDto[]> {
-    const url = `${this.url}/GetHotels?id=${id}&title=${title}`;
+    const url = `${this.url}/get?id=${id}&title=${title}`;
     return this.http.get<GetHotelsResponseDto[]>(url);
   }
 
   deleteHotel(id: number = 0): Observable<void> {
-    const url = `${this.url}/DeleteHotel?id=${id}`;
+    const url = `${this.url}/delete?id=${id}`;
     return this.http.delete<void>(url);
   }
 
   registerHotel(model: RegisterHotelRequestDto): Observable<void> {
-    const url = `${this.url}/RegisterHotel`;
+    const url = `${this.url}/post`;
     return this.http.post<void>(url, model);
   }
 
-  updateHotel(model: UpdateHotelRequestDto): Observable<void> {
-    const url = `${this.url}/UpdateHotel`;
-    return this.http.post<void>(url, model);
+  updateHotel(id: number, model: UpdateHotelRequestDto): Observable<void> {
+    const url = `${this.url}/put/${id}`;
+    return this.http.put<void>(url, model);
   }
 }
