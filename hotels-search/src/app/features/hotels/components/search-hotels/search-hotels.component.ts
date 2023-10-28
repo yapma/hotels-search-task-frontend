@@ -19,6 +19,9 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
 
   hotelsList: GetHotelsResponseDto[] = []
   searchedName = "";
+  
+  selectedId = -1
+  selectedItem : GetHotelsResponseDto | undefined
 
   constructor(private hotelsService: HotelsService) { }
 
@@ -52,8 +55,31 @@ export class SearchHotelsComponent implements OnInit, BaseHotelsComponents {
       this.getHotels(this.searchedName)
   }
 
-  onDelete(alertData: AlertData) {
-    this.getHotels('', alertData)
+  onDelete(id: number) {
+    this.selectedId = id
+    this.selectedItem = this.hotelsList.find(x => x.id == id)
+  }
+
+  delete() {
+    this.hotelsService.deleteHotel(this.selectedId)
+      .subscribe(
+        {
+          next: (value: void) => {
+            var alert: AlertData = {
+              alertType: AlertType.Success,
+              messages: ["Hotel data deleted."]
+            }
+            this.getHotels(this.searchedName, alert)
+          },
+          error: (error: any) => {
+            this.alertData = {
+              alertType: AlertType.Success,
+              messages: ["An error occered on deleting data."]
+            }
+          },
+          complete: () => { }
+        }
+      );
   }
 
 }

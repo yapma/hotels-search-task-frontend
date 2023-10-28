@@ -11,31 +11,14 @@ import { AlertType } from 'src/app/shared/enums/alert-type';
 })
 export class HotelItemComponent implements OnInit {
   @Input() hotelData!: GetHotelsResponseDto;
-  @Output() onDelete = new EventEmitter<AlertData>();
+  @Output() onDelete = new EventEmitter<number>();
   constructor(private hotelsService: HotelsService) { }
 
   ngOnInit(): void {
   }
 
   delete() {
-    this.hotelsService.deleteHotel(this.hotelData.id)
-      .subscribe(
-        {
-          next: (value: void) => {
-            this.onDelete.emit({
-              alertType: AlertType.Success,
-              messages: ["Hotel data deleted."]
-            })
-          },
-          error: (error: any) => {
-            this.onDelete.emit({
-              alertType: AlertType.Error,
-              messages: ["An error occured on deleting data."]
-            })
-          },
-          complete: () => { }
-        }
-      );
+    this.onDelete.emit(this.hotelData.id)
   }
 
 }

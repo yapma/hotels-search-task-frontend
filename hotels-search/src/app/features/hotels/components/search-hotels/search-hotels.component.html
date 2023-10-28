@@ -7,6 +7,32 @@
      [(ngModel)]="searchedName" (ngModelChange)="onSearch()">
 <div class="row">
     <div class="col-md-3 col-sm-12 mt-3" *ngFor="let hotelData of hotelsList">
-        <app-hotel-item [hotelData] = "hotelData" (onDelete) = "onDelete($event)"></app-hotel-item>
+        <app-hotel-item [hotelData] = "hotelData" (onDelete) = "onDelete($event)"
+        data-bs-toggle="modal" 
+        data-bs-target="#deleteModal"></app-hotel-item>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria- 
+  labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="deleteModalLabel">Delete Hotel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+       aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Are you sure to delete of {{selectedItem?.name}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" 
+        aria-label="Close">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" 
+        aria-label="Close" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>
